@@ -510,19 +510,12 @@ fun MascotBubble(modifier: Modifier = Modifier) {
 
 @Composable
 fun UniversalLogoMark(modifier: Modifier = Modifier) {
-    Surface(
-        modifier = modifier.size(width = 88.dp, height = 46.dp),
-        color = Color.White,
-        shape = RoundedCornerShape(14.dp),
-        shadowElevation = 4.dp
-    ) {
-        Image(
-            painter = painterResource(id = R.drawable.universal_logo),
-            contentDescription = "Logo Universal",
-            contentScale = ContentScale.Fit,
-            modifier = Modifier.padding(6.dp)
-        )
-    }
+    Image(
+        painter = painterResource(id = R.drawable.universal_logo),
+        contentDescription = "Logo Universal",
+        contentScale = ContentScale.Fit,
+        modifier = modifier.size(width = 118.dp, height = 56.dp)
+    )
 }
 
 @Composable
@@ -947,7 +940,7 @@ fun BusinessScreen(padding: PaddingValues, cartItems: Int, savings: Double, orde
         Card(shape = RoundedCornerShape(30.dp), colors = CardDefaults.cardColors(containerColor = Color.White), elevation = CardDefaults.cardElevation(4.dp)) {
             Column(Modifier.padding(20.dp), verticalArrangement = Arrangement.spacedBy(16.dp)) {
                 Row(verticalAlignment = Alignment.CenterVertically) {
-                    UniversalLogoMark(Modifier.size(width = 98.dp, height = 54.dp))
+                    UniversalLogoMark(Modifier.size(width = 132.dp, height = 62.dp))
                     Spacer(Modifier.width(14.dp))
                     Column {
                         Text("Distribuidores Exclusivos", color = Cocoa, fontSize = 20.sp, fontWeight = FontWeight.Black)
