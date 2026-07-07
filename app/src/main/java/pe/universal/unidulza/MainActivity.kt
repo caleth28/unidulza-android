@@ -324,25 +324,20 @@ fun ImpactHero(cartItems: Int, subtotal: Double, onOpenCart: () -> Unit) {
     Box(
         modifier = Modifier
             .fillMaxWidth()
-            .height(390.dp)
+            .height(450.dp)
             .background(Brush.verticalGradient(listOf(SoftBlue, Cream)))
     ) {
         HeroBackground()
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(start = 22.dp, top = 28.dp, end = 22.dp)
+                .padding(start = 22.dp, top = 24.dp, end = 22.dp)
         ) {
             Row(verticalAlignment = Alignment.CenterVertically) {
-                UniversalLogoMark()
-                Spacer(Modifier.width(10.dp))
-                Column {
-                    Text("Unidulza", color = UniversalBlue, fontSize = 26.sp, fontWeight = FontWeight.Black)
-                    Text("La Dulzura es Universal", color = UniversalRed, fontSize = 12.sp, fontWeight = FontWeight.Black)
-                }
+                UniversalLogoMark(Modifier.size(width = 142.dp, height = 64.dp))
                 Spacer(Modifier.weight(1f))
                 Surface(
-                    color = Color.White.copy(alpha = .78f),
+                    color = Color.White.copy(alpha = .90f),
                     shape = CircleShape,
                     shadowElevation = 5.dp
                 ) {
@@ -355,57 +350,78 @@ fun ImpactHero(cartItems: Int, subtotal: Double, onOpenCart: () -> Unit) {
                 }
             }
 
+            Surface(
+                color = UniversalYellow,
+                contentColor = Cocoa,
+                shape = RoundedCornerShape(999.dp),
+                modifier = Modifier.padding(top = 16.dp)
+            ) {
+                Text(
+                    "La Dulzura es Universal",
+                    fontSize = 12.sp,
+                    fontWeight = FontWeight.Black,
+                    modifier = Modifier.padding(horizontal = 12.dp, vertical = 6.dp)
+                )
+            }
             Text(
-                "Contagia dulzura en cada pedido de tu negocio",
+                "Pedidos Universal para vender mas dulzura",
                 color = Cocoa,
-                fontSize = 32.sp,
-                lineHeight = 35.sp,
+                fontSize = 29.sp,
+                lineHeight = 32.sp,
                 fontWeight = FontWeight.Black,
-                modifier = Modifier.padding(top = 22.dp, end = 30.dp)
+                modifier = Modifier.padding(top = 12.dp, end = 24.dp)
             )
             Text(
-                "Postres y reposteria Universal para crear, compartir y vender con mas cariño.",
+                "Compra por caja, activa promociones y sigue tu despacho en un solo lugar.",
                 color = InkMuted,
                 fontSize = 14.sp,
                 lineHeight = 19.sp,
-                modifier = Modifier.padding(top = 9.dp, end = 54.dp)
+                modifier = Modifier.padding(top = 8.dp, end = 38.dp)
             )
+            Row(
+                modifier = Modifier.padding(top = 14.dp),
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                Pill("Postres", UniversalRed, Color.White)
+                Pill("Reposteria", UniversalBlue, Color.White)
+                Pill("Despacho 24 h", UniversalGreen, Color.White)
+            }
         }
 
         Box(
             modifier = Modifier
                 .align(Alignment.BottomCenter)
-                .padding(horizontal = 18.dp)
+                .padding(start = 20.dp, end = 20.dp, bottom = 16.dp)
                 .fillMaxWidth()
-                .height(178.dp)
-                .clip(RoundedCornerShape(topStart = 38.dp, topEnd = 38.dp))
+                .height(172.dp)
+                .clip(RoundedCornerShape(32.dp))
                 .background(Brush.linearGradient(listOf(UniversalBlue, Color(0xFF0A1A45))))
         ) {
             BasketIllustration(Modifier.align(Alignment.BottomCenter))
             FloatingPack(
                 label = "FLAN",
                 color = Honey,
-                modifier = Modifier.align(Alignment.TopStart).offset(x = 32.dp, y = (-22).dp),
+                modifier = Modifier.align(Alignment.TopStart).offset(x = 34.dp, y = (-18).dp),
                 shape = PackShape.Bowl
             )
             FloatingPack(
                 label = "GEL",
                 color = Rose,
-                modifier = Modifier.align(Alignment.TopCenter).offset(x = 18.dp, y = (-40).dp),
+                modifier = Modifier.align(Alignment.TopCenter).offset(x = 8.dp, y = (-34).dp),
                 shape = PackShape.Pouch
             )
             FloatingPack(
                 label = "MORA",
                 color = Chicha,
-                modifier = Modifier.align(Alignment.TopEnd).offset(x = (-34).dp, y = (-16).dp),
+                modifier = Modifier.align(Alignment.TopEnd).offset(x = (-36).dp, y = (-12).dp),
                 shape = PackShape.Box
             )
-            MascotBubble(Modifier.align(Alignment.BottomEnd).offset(x = (-18).dp, y = (-20).dp))
+            MascotBubble(Modifier.align(Alignment.BottomEnd).offset(x = (-16).dp, y = (-18).dp))
             Surface(
                 color = Color.White,
                 shape = RoundedCornerShape(18.dp),
                 shadowElevation = 8.dp,
-                modifier = Modifier.align(Alignment.TopStart).padding(start = 16.dp, top = 18.dp)
+                modifier = Modifier.align(Alignment.TopStart).padding(start = 16.dp, top = 20.dp)
             ) {
                 Row(
                     modifier = Modifier.padding(horizontal = 12.dp, vertical = 9.dp),
