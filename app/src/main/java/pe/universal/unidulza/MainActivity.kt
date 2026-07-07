@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -73,6 +74,8 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
@@ -320,7 +323,7 @@ fun ImpactHero(cartItems: Int, subtotal: Double, onOpenCart: () -> Unit) {
                 .padding(start = 22.dp, top = 28.dp, end = 22.dp)
         ) {
             Row(verticalAlignment = Alignment.CenterVertically) {
-                BrandMark(46.dp)
+                UniversalLogoMark()
                 Spacer(Modifier.width(10.dp))
                 Column {
                     Text("Unidulza", color = Purple, fontSize = 26.sp, fontWeight = FontWeight.Black)
@@ -506,15 +509,19 @@ fun MascotBubble(modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun BrandMark(size: androidx.compose.ui.unit.Dp) {
-    Box(
-        modifier = Modifier
-            .size(size)
-            .clip(RoundedCornerShape(14.dp))
-            .background(Brush.linearGradient(listOf(Purple, Rose))),
-        contentAlignment = Alignment.Center
+fun UniversalLogoMark(modifier: Modifier = Modifier) {
+    Surface(
+        modifier = modifier.size(width = 88.dp, height = 46.dp),
+        color = Color.White,
+        shape = RoundedCornerShape(14.dp),
+        shadowElevation = 4.dp
     ) {
-        Text("u", color = Color.White, fontSize = 28.sp, fontWeight = FontWeight.Black)
+        Image(
+            painter = painterResource(id = R.drawable.universal_logo),
+            contentDescription = "Logo Universal",
+            contentScale = ContentScale.Fit,
+            modifier = Modifier.padding(6.dp)
+        )
     }
 }
 
@@ -940,7 +947,7 @@ fun BusinessScreen(padding: PaddingValues, cartItems: Int, savings: Double, orde
         Card(shape = RoundedCornerShape(30.dp), colors = CardDefaults.cardColors(containerColor = Color.White), elevation = CardDefaults.cardElevation(4.dp)) {
             Column(Modifier.padding(20.dp), verticalArrangement = Arrangement.spacedBy(16.dp)) {
                 Row(verticalAlignment = Alignment.CenterVertically) {
-                    BrandMark(60.dp)
+                    UniversalLogoMark(Modifier.size(width = 98.dp, height = 54.dp))
                     Spacer(Modifier.width(14.dp))
                     Column {
                         Text("Distribuidores Exclusivos", color = Cocoa, fontSize = 20.sp, fontWeight = FontWeight.Black)
