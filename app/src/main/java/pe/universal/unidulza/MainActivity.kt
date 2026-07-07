@@ -95,20 +95,23 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-private val Cream = Color(0xFFFFFBF2)
-private val Cocoa = Color(0xFF17172A)
-private val UniversalBlue = Color(0xFF112763)
+private val Cream = Color(0xFFFFFAE8)
+private val Cocoa = Color(0xFF251116)
+private val DeepRed = Color(0xFF9D1118)
+private val Celeste = Color(0xFF9CDAEB)
+private val CelesteDeep = Color(0xFF188CA0)
+private val UniversalBlue = DeepRed
 private val UniversalRed = Color(0xFFED1C24)
 private val UniversalYellow = Color(0xFFFFDA00)
-private val UniversalGreen = Color(0xFF23B461)
-private val Sky = Color(0xFF9CDAEB)
-private val Chicha = Color(0xFF3D206A)
-private val Durazno = Color(0xFFFBAE52)
+private val UniversalGreen = CelesteDeep
+private val Sky = Celeste
+private val Chicha = DeepRed
+private val Durazno = UniversalYellow
 private val Fresa = UniversalRed
-private val Flan = Color(0xFFFFCD03)
-private val SoftBlue = Color(0xFFEAF7FB)
-private val SoftYellow = Color(0xFFFFF5C5)
-private val InkMuted = Color(0xFF6D6A78)
+private val Flan = UniversalYellow
+private val SoftBlue = Color(0xFFEAF9FC)
+private val SoftYellow = Color(0xFFFFF2A6)
+private val InkMuted = Color(0xFF725A60)
 
 private val Purple = UniversalBlue
 private val DeepPurple = UniversalBlue
@@ -324,10 +327,14 @@ fun ImpactHero(cartItems: Int, subtotal: Double, onOpenCart: () -> Unit) {
     Box(
         modifier = Modifier
             .fillMaxWidth()
-            .height(450.dp)
-            .background(Brush.verticalGradient(listOf(SoftBlue, Cream)))
+            .height(468.dp)
+            .background(Brush.verticalGradient(listOf(Celeste.copy(alpha = .54f), Cream)))
     ) {
         HeroBackground()
+        Canvas(modifier = Modifier.fillMaxSize()) {
+            drawCircle(UniversalYellow.copy(alpha = .44f), radius = 150f, center = Offset(size.width * .08f, size.height * .45f))
+            drawCircle(UniversalRed.copy(alpha = .10f), radius = 160f, center = Offset(size.width * 1.03f, size.height * .18f))
+        }
         Column(
             modifier = Modifier
                 .fillMaxWidth()
@@ -337,9 +344,9 @@ fun ImpactHero(cartItems: Int, subtotal: Double, onOpenCart: () -> Unit) {
                 UniversalLogoMark(Modifier.size(width = 142.dp, height = 64.dp))
                 Spacer(Modifier.weight(1f))
                 Surface(
-                    color = Color.White.copy(alpha = .90f),
+                    color = Color.White.copy(alpha = .82f),
                     shape = CircleShape,
-                    shadowElevation = 5.dp
+                    shadowElevation = 10.dp
                 ) {
                     BadgedBox(
                         badge = { if (cartItems > 0) Badge(containerColor = Coral) { Text(cartItems.toString()) } },
@@ -351,28 +358,31 @@ fun ImpactHero(cartItems: Int, subtotal: Double, onOpenCart: () -> Unit) {
             }
 
             Surface(
-                color = UniversalYellow,
+                color = Color.White.copy(alpha = .72f),
                 contentColor = Cocoa,
                 shape = RoundedCornerShape(999.dp),
+                shadowElevation = 4.dp,
                 modifier = Modifier.padding(top = 16.dp)
             ) {
-                Text(
-                    "La Dulzura es Universal",
-                    fontSize = 12.sp,
-                    fontWeight = FontWeight.Black,
-                    modifier = Modifier.padding(horizontal = 12.dp, vertical = 6.dp)
-                )
+                Row(
+                    modifier = Modifier.padding(horizontal = 12.dp, vertical = 7.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Box(Modifier.size(9.dp).clip(CircleShape).background(UniversalYellow))
+                    Spacer(Modifier.width(7.dp))
+                    Text("La Dulzura es Universal", fontSize = 12.sp, fontWeight = FontWeight.Black)
+                }
             }
             Text(
-                "Pedidos Universal para vender mas dulzura",
+                "Tu vitrina dulce para vender mas",
                 color = Cocoa,
-                fontSize = 29.sp,
-                lineHeight = 32.sp,
+                fontSize = 31.sp,
+                lineHeight = 34.sp,
                 fontWeight = FontWeight.Black,
                 modifier = Modifier.padding(top = 12.dp, end = 24.dp)
             )
             Text(
-                "Compra por caja, activa promociones y sigue tu despacho en un solo lugar.",
+                "Compra Universal por caja, activa promos y sigue cada despacho sin perder ritmo.",
                 color = InkMuted,
                 fontSize = 14.sp,
                 lineHeight = 19.sp,
@@ -383,8 +393,8 @@ fun ImpactHero(cartItems: Int, subtotal: Double, onOpenCart: () -> Unit) {
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
                 Pill("Postres", UniversalRed, Color.White)
-                Pill("Reposteria", UniversalBlue, Color.White)
-                Pill("Despacho 24 h", UniversalGreen, Color.White)
+                Pill("Reposteria", UniversalYellow, Cocoa)
+                Pill("Despacho 24 h", CelesteDeep, Color.White)
             }
         }
 
@@ -393,11 +403,16 @@ fun ImpactHero(cartItems: Int, subtotal: Double, onOpenCart: () -> Unit) {
                 .align(Alignment.BottomCenter)
                 .padding(start = 20.dp, end = 20.dp, bottom = 16.dp)
                 .fillMaxWidth()
-                .height(172.dp)
-                .clip(RoundedCornerShape(32.dp))
-                .background(Brush.linearGradient(listOf(UniversalBlue, Color(0xFF0A1A45))))
+                .height(184.dp)
+                .shadow(18.dp, RoundedCornerShape(34.dp))
+                .clip(RoundedCornerShape(34.dp))
+                .background(Brush.linearGradient(listOf(UniversalRed, DeepRed)))
         ) {
             BasketIllustration(Modifier.align(Alignment.BottomCenter))
+            Canvas(Modifier.fillMaxSize()) {
+                drawCircle(UniversalYellow.copy(alpha = .22f), radius = 160f, center = Offset(size.width * .88f, size.height * .08f))
+                drawCircle(Celeste.copy(alpha = .18f), radius = 120f, center = Offset(size.width * .04f, size.height * .96f))
+            }
             FloatingPack(
                 label = "FLAN",
                 color = Honey,
@@ -418,9 +433,9 @@ fun ImpactHero(cartItems: Int, subtotal: Double, onOpenCart: () -> Unit) {
             )
             MascotBubble(Modifier.align(Alignment.BottomEnd).offset(x = (-16).dp, y = (-18).dp))
             Surface(
-                color = Color.White,
-                shape = RoundedCornerShape(18.dp),
-                shadowElevation = 8.dp,
+                color = Color.White.copy(alpha = .90f),
+                shape = RoundedCornerShape(20.dp),
+                shadowElevation = 12.dp,
                 modifier = Modifier.align(Alignment.TopStart).padding(start = 16.dp, top = 20.dp)
             ) {
                 Row(
@@ -434,9 +449,9 @@ fun ImpactHero(cartItems: Int, subtotal: Double, onOpenCart: () -> Unit) {
             }
             if (cartItems > 0) {
                 Surface(
-                    color = Color.White,
-                    shape = RoundedCornerShape(18.dp),
-                    shadowElevation = 8.dp,
+                    color = Color.White.copy(alpha = .92f),
+                    shape = RoundedCornerShape(20.dp),
+                    shadowElevation = 12.dp,
                     modifier = Modifier.align(Alignment.BottomStart).padding(start = 16.dp, bottom = 18.dp).clickable(onClick = onOpenCart)
                 ) {
                     Column(Modifier.padding(horizontal = 14.dp, vertical = 10.dp)) {
@@ -548,19 +563,25 @@ fun UniversalLogoMark(modifier: Modifier = Modifier) {
 @Composable
 fun MetricCard(title: String, value: String, caption: String, color: Color, modifier: Modifier) {
     Card(
-        modifier = modifier.height(92.dp),
-        shape = RoundedCornerShape(22.dp),
-        colors = CardDefaults.cardColors(containerColor = Color.White),
-        elevation = CardDefaults.cardElevation(defaultElevation = 3.dp)
+        modifier = modifier.height(104.dp),
+        shape = RoundedCornerShape(26.dp),
+        colors = CardDefaults.cardColors(containerColor = Color.White.copy(alpha = .96f)),
+        elevation = CardDefaults.cardElevation(defaultElevation = 10.dp)
     ) {
-        Column(Modifier.padding(14.dp), verticalArrangement = Arrangement.SpaceBetween) {
+        Box(Modifier.fillMaxSize()) {
+            Canvas(Modifier.fillMaxSize()) {
+                drawCircle(color.copy(alpha = .10f), radius = 86f, center = Offset(size.width * .92f, size.height * .06f))
+                drawCircle(UniversalYellow.copy(alpha = .14f), radius = 62f, center = Offset(size.width * .02f, size.height * 1.0f))
+            }
+            Column(Modifier.padding(15.dp), verticalArrangement = Arrangement.SpaceBetween) {
             Row(verticalAlignment = Alignment.CenterVertically) {
-                Box(Modifier.size(9.dp).clip(CircleShape).background(color))
+                Box(Modifier.size(10.dp).clip(CircleShape).background(color))
                 Spacer(Modifier.width(7.dp))
                 Text(title, color = InkMuted, fontSize = 12.sp, fontWeight = FontWeight.Bold)
             }
-            Text(value, color = Cocoa, fontSize = 25.sp, fontWeight = FontWeight.Black)
+            Text(value, color = Cocoa, fontSize = 24.sp, fontWeight = FontWeight.Black)
             Text(caption, color = color, fontSize = 12.sp, fontWeight = FontWeight.Bold)
+            }
         }
     }
 }
@@ -587,14 +608,14 @@ fun SectionTitle(title: String, subtitle: String) {
 fun CategoryShowcase(category: Category) {
     Card(
         modifier = Modifier.width(168.dp).height(178.dp),
-        shape = RoundedCornerShape(28.dp),
-        colors = CardDefaults.cardColors(containerColor = Color.White),
-        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
+        shape = RoundedCornerShape(30.dp),
+        colors = CardDefaults.cardColors(containerColor = Color.White.copy(alpha = .98f)),
+        elevation = CardDefaults.cardElevation(defaultElevation = 10.dp)
     ) {
         Box(Modifier.fillMaxSize()) {
             Canvas(Modifier.fillMaxSize()) {
-                drawCircle(category.accent.copy(alpha = .13f), radius = 125f, center = Offset(size.width * .80f, size.height * .08f))
-                drawCircle(category.accent.copy(alpha = .08f), radius = 95f, center = Offset(size.width * .10f, size.height * .96f))
+                drawCircle(category.accent.copy(alpha = .16f), radius = 125f, center = Offset(size.width * .80f, size.height * .08f))
+                drawCircle(Celeste.copy(alpha = .20f), radius = 95f, center = Offset(size.width * .10f, size.height * .96f))
             }
             Column(Modifier.padding(16.dp)) {
                 Box(
@@ -659,17 +680,17 @@ fun ProductGrid(onAdd: (Product) -> Unit) {
 fun ProductTile(product: Product, onAdd: (Product) -> Unit, modifier: Modifier = Modifier) {
     Card(
         modifier = modifier.heightIn(min = 246.dp),
-        shape = RoundedCornerShape(26.dp),
+        shape = RoundedCornerShape(30.dp),
         colors = CardDefaults.cardColors(containerColor = Color.White),
-        elevation = CardDefaults.cardElevation(defaultElevation = 3.dp)
+        elevation = CardDefaults.cardElevation(defaultElevation = 12.dp)
     ) {
         Column(Modifier.padding(12.dp)) {
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
                     .aspectRatio(1.12f)
-                    .clip(RoundedCornerShape(22.dp))
-                    .background(product.accent.copy(alpha = .12f))
+                    .clip(RoundedCornerShape(24.dp))
+                    .background(Brush.linearGradient(listOf(product.accent.copy(alpha = .18f), Celeste.copy(alpha = .22f), Color.White)))
             ) {
                 Canvas(Modifier.fillMaxSize()) {
                     drawCircle(Color.White.copy(alpha = .76f), radius = 74f, center = Offset(size.width * .65f, size.height * .28f))
@@ -699,7 +720,7 @@ fun ProductTile(product: Product, onAdd: (Product) -> Unit, modifier: Modifier =
                 onClick = { onAdd(product) },
                 modifier = Modifier.fillMaxWidth().padding(top = 10.dp),
                 shape = RoundedCornerShape(16.dp),
-                colors = ButtonDefaults.buttonColors(containerColor = UniversalBlue),
+                colors = ButtonDefaults.buttonColors(containerColor = UniversalRed),
                 contentPadding = PaddingValues(vertical = 10.dp)
             ) {
                 Icon(Icons.Default.Add, contentDescription = null, modifier = Modifier.size(18.dp))
