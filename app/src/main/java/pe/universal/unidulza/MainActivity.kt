@@ -95,18 +95,29 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-private val Cream = Color(0xFFFFF6EC)
-private val Cocoa = Color(0xFF211142)
-private val Purple = Color(0xFF5425DB)
-private val DeepPurple = Color(0xFF2D1478)
-private val Coral = Color(0xFFFF6048)
-private val Rose = Color(0xFFFF4F86)
-private val Honey = Color(0xFFFFC928)
-private val Mint = Color(0xFF00A884)
-private val Sky = Color(0xFF47C7FF)
-private val Lilac = Color(0xFFE4DAFF)
-private val Lavender = Color(0xFFC9B8FF)
-private val InkMuted = Color(0xFF736982)
+private val Cream = Color(0xFFFFFBF2)
+private val Cocoa = Color(0xFF17172A)
+private val UniversalBlue = Color(0xFF112763)
+private val UniversalRed = Color(0xFFED1C24)
+private val UniversalYellow = Color(0xFFFFDA00)
+private val UniversalGreen = Color(0xFF23B461)
+private val Sky = Color(0xFF9CDAEB)
+private val Chicha = Color(0xFF3D206A)
+private val Durazno = Color(0xFFFBAE52)
+private val Fresa = UniversalRed
+private val Flan = Color(0xFFFFCD03)
+private val SoftBlue = Color(0xFFEAF7FB)
+private val SoftYellow = Color(0xFFFFF5C5)
+private val InkMuted = Color(0xFF6D6A78)
+
+private val Purple = UniversalBlue
+private val DeepPurple = UniversalBlue
+private val Coral = UniversalRed
+private val Rose = Fresa
+private val Honey = UniversalYellow
+private val Mint = UniversalGreen
+private val Lilac = SoftBlue
+private val Lavender = SoftYellow
 
 data class Product(
     val sku: String,
@@ -140,19 +151,19 @@ data class Order(
 )
 
 private val categories = listOf(
-    Category("Gelatinas", "Sabores top", Icons.Default.Cake, Rose, "32 skus"),
-    Category("Flanes", "Alta rotacion", Icons.Default.Star, Honey, "18 skus"),
-    Category("Reposteria", "Insumos clave", Icons.Default.Inventory2, Purple, "44 skus"),
+    Category("Gelatinas", "Sabores top", Icons.Default.Cake, Fresa, "32 skus"),
+    Category("Flanes", "Alta rotacion", Icons.Default.Star, Flan, "18 skus"),
+    Category("Reposteria", "Insumos clave", Icons.Default.Inventory2, Chicha, "44 skus"),
     Category("Lanzamientos", "Novedades", Icons.Default.Storefront, Sky, "9 skus")
 )
 
 private val products = listOf(
     Product("UNI-GEL-FRE-150", "Gelatina Universal fresa 150 g", "Postres", 2.80, 3.10, 10, "24 ud es 1 caja", 24, 86, Rose, PackShape.Pouch),
-    Product("UNI-MAZ-MOR-160", "Mazamorra morada Universal 160 g", "Postres", 3.40, 3.80, 11, "24 ud es 1 caja", 24, 64, Purple, PackShape.Box),
-    Product("UNI-FLA-VAI-100", "Flan vainilla Universal 100 g", "Flanes", 2.95, 3.20, 8, "36 ud es 1 caja", 36, 42, Honey, PackShape.Bowl),
+    Product("UNI-MAZ-MOR-160", "Mazamorra morada Universal 160 g", "Postres", 3.40, 3.80, 11, "24 ud es 1 caja", 24, 64, Chicha, PackShape.Box),
+    Product("UNI-FLA-VAI-100", "Flan vainilla Universal 100 g", "Flanes", 2.95, 3.20, 8, "36 ud es 1 caja", 36, 42, Flan, PackShape.Bowl),
     Product("UNI-COB-CHO-500", "Cobertura sabor chocolate 500 g", "Reposteria", 8.90, 9.80, 9, "12 ud es 1 caja", 12, 28, Color(0xFF8B4E2F), PackShape.Bottle),
     Product("UNI-GEL-PIA-150", "Gelatina Universal pina 150 g", "Postres", 2.75, 3.05, 10, "24 ud es 1 caja", 24, 51, Sky, PackShape.Pouch),
-    Product("UNI-DEC-CHO-250", "Decoracion sabor chocolate 250 g", "Reposteria", 6.40, 7.10, 10, "18 ud es 1 caja", 18, 19, Coral, PackShape.Bottle)
+    Product("UNI-DEC-CHO-250", "Decoracion sabor chocolate 250 g", "Reposteria", 6.40, 7.10, 10, "18 ud es 1 caja", 18, 19, Durazno, PackShape.Bottle)
 )
 
 enum class Tab(val title: String, val icon: ImageVector) {
@@ -169,9 +180,9 @@ private fun money(value: Double) = "S/ ${"%.2f".format(value)}"
 fun UnidulzaTheme(content: @Composable () -> Unit) {
     MaterialTheme(
         colorScheme = androidx.compose.material3.lightColorScheme(
-            primary = Purple,
-            secondary = Rose,
-            tertiary = Honey,
+            primary = UniversalBlue,
+            secondary = UniversalRed,
+            tertiary = UniversalYellow,
             background = Cream,
             surface = Color.White,
             onPrimary = Color.White,
@@ -283,7 +294,7 @@ fun HomeScreen(
                 modifier = Modifier.padding(horizontal = 20.dp),
                 horizontalArrangement = Arrangement.spacedBy(12.dp)
             ) {
-                MetricCard("Pedido minimo", "S/ 120", "Activa despacho", Purple, Modifier.weight(1f))
+                MetricCard("Pedido minimo", "S/ 120", "Activa despacho", UniversalBlue, Modifier.weight(1f))
                 MetricCard("Ahorro ahora", money(savings), "En carrito", Mint, Modifier.weight(1f))
             }
         }
@@ -314,7 +325,7 @@ fun ImpactHero(cartItems: Int, subtotal: Double, onOpenCart: () -> Unit) {
         modifier = Modifier
             .fillMaxWidth()
             .height(390.dp)
-            .background(Brush.verticalGradient(listOf(Lilac, Cream)))
+            .background(Brush.verticalGradient(listOf(SoftBlue, Cream)))
     ) {
         HeroBackground()
         Column(
@@ -326,8 +337,8 @@ fun ImpactHero(cartItems: Int, subtotal: Double, onOpenCart: () -> Unit) {
                 UniversalLogoMark()
                 Spacer(Modifier.width(10.dp))
                 Column {
-                    Text("Unidulza", color = Purple, fontSize = 26.sp, fontWeight = FontWeight.Black)
-                    Text("Universal para distribuidores", color = DeepPurple, fontSize = 12.sp, fontWeight = FontWeight.Bold)
+                    Text("Unidulza", color = UniversalBlue, fontSize = 26.sp, fontWeight = FontWeight.Black)
+                    Text("La Dulzura es Universal", color = UniversalRed, fontSize = 12.sp, fontWeight = FontWeight.Black)
                 }
                 Spacer(Modifier.weight(1f))
                 Surface(
@@ -339,13 +350,13 @@ fun ImpactHero(cartItems: Int, subtotal: Double, onOpenCart: () -> Unit) {
                         badge = { if (cartItems > 0) Badge(containerColor = Coral) { Text(cartItems.toString()) } },
                         modifier = Modifier.clickable(onClick = onOpenCart).padding(11.dp)
                     ) {
-                        Icon(Icons.Default.ShoppingCart, contentDescription = "Carrito", tint = Purple, modifier = Modifier.size(22.dp))
+                        Icon(Icons.Default.ShoppingCart, contentDescription = "Carrito", tint = UniversalBlue, modifier = Modifier.size(22.dp))
                     }
                 }
             }
 
             Text(
-                "Endulza tu negocio con pedidos mas inteligentes",
+                "Contagia dulzura en cada pedido de tu negocio",
                 color = Cocoa,
                 fontSize = 32.sp,
                 lineHeight = 35.sp,
@@ -353,7 +364,7 @@ fun ImpactHero(cartItems: Int, subtotal: Double, onOpenCart: () -> Unit) {
                 modifier = Modifier.padding(top = 22.dp, end = 30.dp)
             )
             Text(
-                "Promos, reposicion y despacho Universal en una experiencia visual para vender mas.",
+                "Postres y reposteria Universal para crear, compartir y vender con mas cariño.",
                 color = InkMuted,
                 fontSize = 14.sp,
                 lineHeight = 19.sp,
@@ -368,7 +379,7 @@ fun ImpactHero(cartItems: Int, subtotal: Double, onOpenCart: () -> Unit) {
                 .fillMaxWidth()
                 .height(178.dp)
                 .clip(RoundedCornerShape(topStart = 38.dp, topEnd = 38.dp))
-                .background(Brush.linearGradient(listOf(Purple, DeepPurple)))
+                .background(Brush.linearGradient(listOf(UniversalBlue, Color(0xFF0A1A45))))
         ) {
             BasketIllustration(Modifier.align(Alignment.BottomCenter))
             FloatingPack(
@@ -385,7 +396,7 @@ fun ImpactHero(cartItems: Int, subtotal: Double, onOpenCart: () -> Unit) {
             )
             FloatingPack(
                 label = "MORA",
-                color = Purple,
+                color = Chicha,
                 modifier = Modifier.align(Alignment.TopEnd).offset(x = (-34).dp, y = (-16).dp),
                 shape = PackShape.Box
             )
@@ -402,7 +413,7 @@ fun ImpactHero(cartItems: Int, subtotal: Double, onOpenCart: () -> Unit) {
                 ) {
                     Icon(Icons.Default.Discount, contentDescription = null, tint = Mint, modifier = Modifier.size(18.dp))
                     Spacer(Modifier.width(6.dp))
-                    Text("Hasta 15% dsct.", color = Cocoa, fontWeight = FontWeight.Black, fontSize = 13.sp)
+                    Text("Dulzura con ahorro", color = Cocoa, fontWeight = FontWeight.Black, fontSize = 13.sp)
                 }
             }
             if (cartItems > 0) {
@@ -414,7 +425,7 @@ fun ImpactHero(cartItems: Int, subtotal: Double, onOpenCart: () -> Unit) {
                 ) {
                     Column(Modifier.padding(horizontal = 14.dp, vertical = 10.dp)) {
                         Text("Carrito listo", color = InkMuted, fontSize = 11.sp, fontWeight = FontWeight.Bold)
-                        Text(money(subtotal), color = Purple, fontSize = 18.sp, fontWeight = FontWeight.Black)
+                        Text(money(subtotal), color = UniversalBlue, fontSize = 18.sp, fontWeight = FontWeight.Black)
                     }
                 }
             }
@@ -426,8 +437,8 @@ fun ImpactHero(cartItems: Int, subtotal: Double, onOpenCart: () -> Unit) {
 fun HeroBackground() {
     Canvas(modifier = Modifier.fillMaxSize()) {
         drawCircle(Color.White.copy(alpha = .50f), radius = 170f, center = Offset(size.width * .80f, -10f))
-        drawCircle(Purple.copy(alpha = .08f), radius = 125f, center = Offset(size.width * .10f, size.height * .38f))
-        drawCircle(Coral.copy(alpha = .10f), radius = 95f, center = Offset(size.width * .95f, size.height * .53f))
+        drawCircle(UniversalYellow.copy(alpha = .24f), radius = 125f, center = Offset(size.width * .10f, size.height * .38f))
+        drawCircle(UniversalRed.copy(alpha = .10f), radius = 95f, center = Offset(size.width * .95f, size.height * .53f))
         val wave = Path().apply {
             moveTo(0f, size.height * .66f)
             cubicTo(size.width * .30f, size.height * .55f, size.width * .62f, size.height * .78f, size.width, size.height * .62f)
@@ -449,8 +460,8 @@ fun BasketIllustration(modifier: Modifier = Modifier) {
             lineTo(size.width * .20f, size.height * .92f)
             close()
         }
-        drawPath(basket, Lavender)
-        drawPath(basket, Purple.copy(alpha = .18f))
+        drawPath(basket, UniversalYellow)
+        drawPath(basket, UniversalBlue.copy(alpha = .16f))
         drawLine(Color.White.copy(alpha = .42f), Offset(size.width * .20f, size.height * .52f), Offset(size.width * .82f, size.height * .40f), strokeWidth = 7f)
         drawLine(Color.White.copy(alpha = .30f), Offset(size.width * .26f, size.height * .72f), Offset(size.width * .75f, size.height * .62f), strokeWidth = 7f)
     }
@@ -497,7 +508,7 @@ fun MascotBubble(modifier: Modifier = Modifier) {
             .size(84.dp)
             .clip(CircleShape)
             .background(Color.White)
-            .border(3.dp, Lilac, CircleShape),
+            .border(3.dp, SoftBlue, CircleShape),
         contentAlignment = Alignment.Center
     ) {
         Canvas(Modifier.fillMaxSize()) {
@@ -550,8 +561,8 @@ fun SectionTitle(title: String, subtitle: String) {
             Text(subtitle, color = InkMuted, fontSize = 13.sp)
         }
         Row(verticalAlignment = Alignment.CenterVertically) {
-            Text("Ver todo", color = Purple, fontSize = 13.sp, fontWeight = FontWeight.Black)
-            Icon(Icons.AutoMirrored.Filled.ArrowForward, contentDescription = null, tint = Purple, modifier = Modifier.size(16.dp))
+            Text("Ver todo", color = UniversalBlue, fontSize = 13.sp, fontWeight = FontWeight.Black)
+            Icon(Icons.AutoMirrored.Filled.ArrowForward, contentDescription = null, tint = UniversalBlue, modifier = Modifier.size(16.dp))
         }
     }
 }
@@ -591,18 +602,18 @@ fun CampaignBanner() {
     Card(
         modifier = Modifier.padding(horizontal = 20.dp).fillMaxWidth(),
         shape = RoundedCornerShape(30.dp),
-        colors = CardDefaults.cardColors(containerColor = DeepPurple),
+        colors = CardDefaults.cardColors(containerColor = UniversalBlue),
         elevation = CardDefaults.cardElevation(defaultElevation = 5.dp)
     ) {
         Box(Modifier.fillMaxWidth().height(170.dp)) {
             Canvas(Modifier.fillMaxSize()) {
-                drawCircle(Honey.copy(alpha = .24f), radius = 135f, center = Offset(size.width * .95f, size.height * .10f))
-                drawCircle(Rose.copy(alpha = .30f), radius = 92f, center = Offset(size.width * .06f, size.height * .92f))
+                drawCircle(UniversalYellow.copy(alpha = .28f), radius = 135f, center = Offset(size.width * .95f, size.height * .10f))
+                drawCircle(UniversalRed.copy(alpha = .22f), radius = 92f, center = Offset(size.width * .06f, size.height * .92f))
             }
             Column(Modifier.padding(18.dp).fillMaxWidth(.62f)) {
-                Pill("Campana Universal", Honey, Cocoa)
-                Text("Combo repostero para crecer tu ticket", color = Color.White, fontSize = 23.sp, lineHeight = 26.sp, fontWeight = FontWeight.Black, modifier = Modifier.padding(top = 12.dp))
-                Text("Mezcla postres + cobertura y desbloquea despacho preferente.", color = Color.White.copy(alpha = .76f), fontSize = 12.sp, lineHeight = 16.sp, modifier = Modifier.padding(top = 7.dp))
+                Pill("La Dulzura es Universal", UniversalYellow, Cocoa)
+                Text("Combo repostero para compartir y vender mas", color = Color.White, fontSize = 23.sp, lineHeight = 26.sp, fontWeight = FontWeight.Black, modifier = Modifier.padding(top = 12.dp))
+                Text("Mezcla postres + cobertura y activa despacho preferente.", color = Color.White.copy(alpha = .78f), fontSize = 12.sp, lineHeight = 16.sp, modifier = Modifier.padding(top = 7.dp))
             }
             ProductArt(Rose, PackShape.Pouch, Modifier.align(Alignment.BottomEnd).offset(x = (-72).dp, y = 20.dp).size(92.dp))
             ProductArt(Honey, PackShape.Bowl, Modifier.align(Alignment.CenterEnd).offset(x = (-20).dp, y = (-12).dp).size(96.dp))
@@ -672,7 +683,7 @@ fun ProductTile(product: Product, onAdd: (Product) -> Unit, modifier: Modifier =
                 onClick = { onAdd(product) },
                 modifier = Modifier.fillMaxWidth().padding(top = 10.dp),
                 shape = RoundedCornerShape(16.dp),
-                colors = ButtonDefaults.buttonColors(containerColor = Purple),
+                colors = ButtonDefaults.buttonColors(containerColor = UniversalBlue),
                 contentPadding = PaddingValues(vertical = 10.dp)
             ) {
                 Icon(Icons.Default.Add, contentDescription = null, modifier = Modifier.size(18.dp))
@@ -691,7 +702,7 @@ fun PromoScreen(padding: PaddingValues, onAdd: (Product) -> Unit) {
         verticalArrangement = Arrangement.spacedBy(18.dp)
     ) {
         item {
-            Box(Modifier.fillMaxWidth().height(280.dp).background(Brush.verticalGradient(listOf(Lilac, Cream)))) {
+            Box(Modifier.fillMaxWidth().height(280.dp).background(Brush.verticalGradient(listOf(SoftBlue, Cream)))) {
                 HeroBackground()
                 Column(Modifier.padding(22.dp)) {
                     Text("Promociones", color = Cocoa, fontSize = 34.sp, fontWeight = FontWeight.Black)
@@ -782,12 +793,12 @@ fun CartItemRow(product: Product, quantity: Int, onAdd: () -> Unit, onRemove: ()
 @Composable
 fun QuantityStepper(quantity: Int, onAdd: () -> Unit, onRemove: () -> Unit) {
     Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(8.dp)) {
-        Surface(color = Purple, shape = CircleShape, modifier = Modifier.clickable(onClick = onAdd)) {
+        Surface(color = UniversalBlue, shape = CircleShape, modifier = Modifier.clickable(onClick = onAdd)) {
             Icon(Icons.Default.Add, contentDescription = "Aumentar", tint = Color.White, modifier = Modifier.padding(8.dp).size(18.dp))
         }
         Text(quantity.toString(), color = Cocoa, fontSize = 18.sp, fontWeight = FontWeight.Black)
-        Surface(color = Lilac, shape = CircleShape, modifier = Modifier.clickable(onClick = onRemove)) {
-            Icon(Icons.Default.Remove, contentDescription = "Disminuir", tint = DeepPurple, modifier = Modifier.padding(8.dp).size(18.dp))
+        Surface(color = SoftBlue, shape = CircleShape, modifier = Modifier.clickable(onClick = onRemove)) {
+            Icon(Icons.Default.Remove, contentDescription = "Disminuir", tint = UniversalBlue, modifier = Modifier.padding(8.dp).size(18.dp))
         }
     }
 }
@@ -803,13 +814,13 @@ fun CartSummaryCard(
 ) {
     Card(
         shape = RoundedCornerShape(30.dp),
-        colors = CardDefaults.cardColors(containerColor = DeepPurple),
+        colors = CardDefaults.cardColors(containerColor = UniversalBlue),
         elevation = CardDefaults.cardElevation(5.dp)
     ) {
         Column(Modifier.padding(20.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
             Text("Resumen del pedido", color = Color.White, fontSize = 22.sp, fontWeight = FontWeight.Black)
             SummaryLine("Precio lista", money(oldSubtotal), Color.White.copy(alpha = .72f))
-            SummaryLine("Ahorro aplicado", "- ${money(savings)}", Honey)
+            SummaryLine("Ahorro aplicado", "- ${money(savings)}", UniversalYellow)
             SummaryLine("Total", money(subtotal), Color.White, highlight = true)
             if (!canOrder) {
                 Surface(color = Coral.copy(alpha = .18f), shape = RoundedCornerShape(16.dp)) {
@@ -821,7 +832,7 @@ fun CartSummaryCard(
                 enabled = canOrder,
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(18.dp),
-                colors = ButtonDefaults.buttonColors(containerColor = Honey, contentColor = Cocoa, disabledContainerColor = Color.White.copy(alpha = .20f), disabledContentColor = Color.White.copy(alpha = .55f))
+                colors = ButtonDefaults.buttonColors(containerColor = UniversalYellow, contentColor = Cocoa, disabledContainerColor = Color.White.copy(alpha = .20f), disabledContentColor = Color.White.copy(alpha = .55f))
             ) {
                 Text("Confirmar pedido", fontWeight = FontWeight.Black)
             }
@@ -866,9 +877,9 @@ fun OrdersScreen(padding: PaddingValues, latestOrder: Order?, orders: List<Order
                 Card(shape = RoundedCornerShape(30.dp), colors = CardDefaults.cardColors(containerColor = Color.White), elevation = CardDefaults.cardElevation(4.dp)) {
                     Column(Modifier.padding(20.dp), verticalArrangement = Arrangement.spacedBy(18.dp)) {
                         Text("Progreso del pedido", color = Cocoa, fontSize = 20.sp, fontWeight = FontWeight.Black)
-                        LinearProgressIndicator(progress = { .78f }, modifier = Modifier.fillMaxWidth().height(8.dp).clip(RoundedCornerShape(99.dp)), color = Mint, trackColor = Lilac)
-                        SummaryLine("Total", money(latestOrder.total), Purple, highlight = true)
-                        SummaryLine("Cajas", latestOrder.boxes.toString(), Purple)
+                        LinearProgressIndicator(progress = { .78f }, modifier = Modifier.fillMaxWidth().height(8.dp).clip(RoundedCornerShape(99.dp)), color = UniversalGreen, trackColor = SoftBlue)
+                        SummaryLine("Total", money(latestOrder.total), UniversalBlue, highlight = true)
+                        SummaryLine("Cajas", latestOrder.boxes.toString(), UniversalBlue)
                         OrderStep("Revision de pedido", "Stock y precios validados.", true)
                         OrderStep("Pedido facturado", "Comprobante listo.", true)
                         OrderStep("Pedido en camino", "Despacho asignado.", true)
@@ -902,7 +913,7 @@ fun OrderHistoryRow(order: Order) {
 fun OrderStep(title: String, subtitle: String, done: Boolean) {
     Row(verticalAlignment = Alignment.CenterVertically) {
         Box(
-            modifier = Modifier.size(42.dp).clip(CircleShape).background(if (done) Mint else Purple),
+            modifier = Modifier.size(42.dp).clip(CircleShape).background(if (done) UniversalGreen else UniversalBlue),
             contentAlignment = Alignment.Center
         ) {
             if (done) Icon(Icons.Default.Check, contentDescription = null, tint = Color.White) else Text("4", color = Color.White, fontWeight = FontWeight.Black)
@@ -917,13 +928,13 @@ fun OrderStep(title: String, subtitle: String, done: Boolean) {
 
 @Composable
 fun RatingCard() {
-    Card(shape = RoundedCornerShape(28.dp), colors = CardDefaults.cardColors(containerColor = DeepPurple), elevation = CardDefaults.cardElevation(4.dp)) {
+    Card(shape = RoundedCornerShape(28.dp), colors = CardDefaults.cardColors(containerColor = UniversalBlue), elevation = CardDefaults.cardElevation(4.dp)) {
         Column(Modifier.padding(20.dp)) {
             Text("Califica tu servicio", color = Color.White, fontSize = 22.sp, fontWeight = FontWeight.Black)
             Text("Ayudanos a mejorar la entrega a distribuidores.", color = Color.White.copy(alpha = .72f), modifier = Modifier.padding(top = 4.dp))
             Row(Modifier.padding(top = 16.dp), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                 repeat(5) {
-                    Icon(Icons.Default.Star, contentDescription = null, tint = Honey, modifier = Modifier.size(34.dp))
+                    Icon(Icons.Default.Star, contentDescription = null, tint = UniversalYellow, modifier = Modifier.size(34.dp))
                 }
             }
         }
@@ -947,12 +958,12 @@ fun BusinessScreen(padding: PaddingValues, cartItems: Int, savings: Double, orde
                         Text("Cliente preferente Universal", color = InkMuted)
                     }
                 }
-                Surface(color = Lilac.copy(alpha = .55f), shape = RoundedCornerShape(20.dp)) {
+                Surface(color = SoftBlue.copy(alpha = .75f), shape = RoundedCornerShape(20.dp)) {
                     Column(Modifier.fillMaxWidth().padding(16.dp)) {
                         Text("Resumen de compra", color = Cocoa, fontWeight = FontWeight.Black)
                         Row(Modifier.fillMaxWidth().padding(top = 8.dp), horizontalArrangement = Arrangement.SpaceBetween) {
                             Text("Productos en carrito", color = InkMuted)
-                            Text(cartItems.toString(), color = Purple, fontWeight = FontWeight.Black)
+                            Text(cartItems.toString(), color = UniversalBlue, fontWeight = FontWeight.Black)
                         }
                         Row(Modifier.fillMaxWidth().padding(top = 4.dp), horizontalArrangement = Arrangement.SpaceBetween) {
                             Text("Ahorro estimado", color = InkMuted)
@@ -960,7 +971,7 @@ fun BusinessScreen(padding: PaddingValues, cartItems: Int, savings: Double, orde
                         }
                         Row(Modifier.fillMaxWidth().padding(top = 4.dp), horizontalArrangement = Arrangement.SpaceBetween) {
                             Text("Pedidos confirmados", color = InkMuted)
-                            Text(orders.size.toString(), color = Purple, fontWeight = FontWeight.Black)
+                            Text(orders.size.toString(), color = UniversalBlue, fontWeight = FontWeight.Black)
                         }
                     }
                 }
@@ -969,7 +980,7 @@ fun BusinessScreen(padding: PaddingValues, cartItems: Int, savings: Double, orde
                     onClick = {},
                     modifier = Modifier.fillMaxWidth(),
                     shape = RoundedCornerShape(18.dp),
-                    colors = ButtonDefaults.buttonColors(containerColor = Purple)
+                    colors = ButtonDefaults.buttonColors(containerColor = UniversalBlue)
                 ) {
                     Icon(Icons.Default.ShoppingCart, contentDescription = null)
                     Spacer(Modifier.width(8.dp))
@@ -982,12 +993,12 @@ fun BusinessScreen(padding: PaddingValues, cartItems: Int, savings: Double, orde
 
 @Composable
 fun BusinessInsightCard() {
-    Surface(color = DeepPurple, shape = RoundedCornerShape(22.dp)) {
+    Surface(color = UniversalBlue, shape = RoundedCornerShape(22.dp)) {
         Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
             Text("Sugerencia de reposicion", color = Color.White, fontSize = 18.sp, fontWeight = FontWeight.Black)
-            Text("Gelatinas y flanes tienen mejor rotacion esta semana. Arma un combo de 6 cajas para mejorar margen.", color = Color.White.copy(alpha = .76f), fontSize = 13.sp, lineHeight = 17.sp)
-            LinearProgressIndicator(progress = { .68f }, modifier = Modifier.fillMaxWidth().height(8.dp).clip(RoundedCornerShape(99.dp)), color = Honey, trackColor = Color.White.copy(alpha = .18f))
-            Text("68% de meta semanal estimada", color = Honey, fontSize = 12.sp, fontWeight = FontWeight.Black)
+            Text("Gelatinas y flanes tienen mejor rotacion esta semana. Arma un combo de 6 cajas para compartir mas dulzura.", color = Color.White.copy(alpha = .78f), fontSize = 13.sp, lineHeight = 17.sp)
+            LinearProgressIndicator(progress = { .68f }, modifier = Modifier.fillMaxWidth().height(8.dp).clip(RoundedCornerShape(99.dp)), color = UniversalYellow, trackColor = Color.White.copy(alpha = .18f))
+            Text("68% de meta semanal estimada", color = UniversalYellow, fontSize = 12.sp, fontWeight = FontWeight.Black)
         }
     }
 }
